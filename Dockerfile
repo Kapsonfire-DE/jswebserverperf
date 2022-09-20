@@ -1,4 +1,4 @@
-FROM debian:11
+FROM debian:11 as needsquash
 SHELL ["/bin/bash", "--login", "-c"]
 #WE ARE BUILDING ALWAYS WITHOUT CACHE
 RUN apt-get update
@@ -30,4 +30,8 @@ RUN source ~/.bashrc
 
 COPY ./entrypoint.sh /
 COPY ./benchmarks/ ./var/benchmarks
+
+FROM scratch
+COPY --from=needsquash / /
+WORKDIR /var/benchmarks
 ENTRYPOINT ["/entrypoint.sh"]
