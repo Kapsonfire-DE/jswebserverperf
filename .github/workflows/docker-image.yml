@@ -23,6 +23,6 @@ jobs:
 
       -
          name: Build the Docker image
-         run: docker build . --no-cache --file Dockerfile --tag jswebserverperf:latest && docker push kapsonfirede/jswebserverperf:latest
+         run: docker build . --no-cache --file Dockerfile --tag ${{ secrets.DOCKER_HUB_USERNAME }}/jswebserverperf:latest && docker push ${{ secrets.DOCKER_HUB_USERNAME }}/jswebserverperf:latest
 
 
