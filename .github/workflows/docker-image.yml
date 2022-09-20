@@ -11,4 +11,4 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag jswebserverperf:latest
+      run: docker build . --no-cache --file Dockerfile --tag jswebserverperf:latest
