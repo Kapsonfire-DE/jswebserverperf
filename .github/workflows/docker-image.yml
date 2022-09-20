@@ -15,9 +15,12 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+
       -
         uses: actions/checkout@v3
-        name: Build the Docker image
-        run: docker build . --no-cache --file Dockerfile --tag jswebserverperf:latest && docker push kapsonfirede/jswebserverperf:latest
+
+      -
+         name: Build the Docker image
+         run: docker build . --no-cache --file Dockerfile --tag jswebserverperf:latest && docker push kapsonfirede/jswebserverperf:latest
 
 
