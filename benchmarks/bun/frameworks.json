@@ -10,6 +10,11 @@
     "npmName": "baojs"
   },
   {
+    "name": "buchta",
+    "entryPoint": "buchta/index.ts",
+    "npmName": "buchta"
+  },
+  {
     "name": "express",
     "entryPoint": "express/index.ts",
     "npmName": "express"
