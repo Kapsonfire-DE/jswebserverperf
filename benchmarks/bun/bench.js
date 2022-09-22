@@ -84,7 +84,7 @@ for (const framework of frameworks) {
 
 
 appendFileSync(
-    resultsPath +'/results/results.md',
+    resultsPath +'/results.md',
     `
     
     
