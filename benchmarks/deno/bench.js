@@ -12,7 +12,7 @@ import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import systeminfo from "../systeminfo.js";
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const resultsPath = '/var/results/node';
+const resultsPath = '/var/results/deno';
 let frameworks = JSON.parse(readFileSync(__dirname+'/frameworks.json', 'utf-8'))
 
 
@@ -39,9 +39,9 @@ writeFileSync(
 `
 )
 const versions = JSON.parse((await $`npm ls --json`.quiet()).stdout);
-const nodeVersion = ((await $`node --version`.quiet())+'').trim();
+const denoVersion = ((await $`deno --version | grep deno | cut -b 6-`.quiet())+'').trim();
 frameworks = frameworks.sort((a,b) => a.name.localeCompare(b.name));
-versions.dependencies['Node'] = {version: nodeVersion};
+versions.dependencies['Deno'] = {version: denoVersion};
 let jsonResults = {};
 for (const framework of frameworks) {
     let frameWorkResult = [];
@@ -94,7 +94,7 @@ appendFileSync(
 `
 )
 
-systeminfo['runtime'] = `node ${nodeVersion}`;
+systeminfo['runtime'] = `deno ${denoVersion}`;
 systeminfo['date'] = (new Date()).toUTCString();
 
 
