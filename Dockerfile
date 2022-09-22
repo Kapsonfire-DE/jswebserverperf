@@ -3,7 +3,7 @@ SHELL ["/bin/bash", "--login", "-c"]
 #WE ARE BUILDING ALWAYS WITHOUT CACHE
 RUN apt-get update
 RUN apt-get upgrade -y
-RUN apt-get install curl unzip wget -y
+RUN apt-get install curl unzip wget procps -y
 RUN apt-get clean
 RUN rm -rf /var/lib/apt/lists/*
 
@@ -13,7 +13,6 @@ RUN rm -rf /usr/local/go && tar -C /usr/local -xzf go1.19.1.linux-amd64.tar.gz
 RUN echo 'export PATH=$PATH:/usr/local/go/bin:~/go/bin' >> ~/.bashrc
 RUN source ~/.bashrc
 RUN go install github.com/codesenberg/bombardier@latest
-RUN bombardier --version
 
 ### install bun
 RUN curl https://bun.sh/install | bash
