@@ -1,0 +1,52 @@
+[
+  {
+    "name": "bun-bakery",
+    "entryPoint": "bun-bakery/index.ts",
+    "npmName": "@kapsonfire/bun-bakery"
+  },
+  {
+    "name": "baojs",
+    "entryPoint": "baojs/index.ts",
+    "npmName": "baojs"
+  },
+  {
+    "name": "express",
+    "entryPoint": "express/index.ts",
+    "npmName": "express"
+  },
+  {
+    "name": "Bun",
+    "entryPoint": "bun-native/index.ts",
+    "npmName": "Bun"
+  },
+  {
+    "name": "bunrest",
+    "entryPoint": "bunrest/index.ts",
+    "npmName": "bunrest"
+  },
+  {
+    "name": "colston",
+    "entryPoint": "colston/index.ts",
+    "npmName": "colstonjs"
+  },
+  {
+    "name": "hono",
+    "entryPoint": "hono/index.ts",
+    "npmName": "hono"
+  },
+  {
+    "name": "hyperbun",
+    "entryPoint": "hyperbun/index.ts",
+    "npmName": "hyperbun"
+  },
+  {
+    "name": "kingworld",
+    "entryPoint": "kingworld/index.ts",
+    "npmName": "kingworld"
+  },
+  {
+    "name": "nbit",
+    "entryPoint": "nbit/index.ts",
+    "npmName": "@nbit/bun"
+  }
+]

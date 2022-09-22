@@ -1,4 +1,3 @@
-#!/bin/sh
-/bin/bash ./run.sh
-
-exec "$@"
+source ~/.bashrc
+bombardier --version
+./run.sh
