@@ -3,3 +3,4 @@ ncu -u
 npm i
 
 node ./bun/bench.js
+node ./node/bench.js

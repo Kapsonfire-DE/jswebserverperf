@@ -1,0 +1,7 @@
+[
+  {
+    "name": "express",
+    "entryPoint": "express/index.js",
+    "npmName": "express"
+  }
+]
