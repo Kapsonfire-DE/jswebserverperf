@@ -13,7 +13,7 @@ RUN rm -rf /usr/local/go && tar -C /usr/local -xzf go1.19.1.linux-amd64.tar.gz
 RUN echo 'export PATH=$PATH:/usr/local/go/bin:~/go/bin' >> ~/.bashrc
 RUN source ~/.bashrc
 RUN go install github.com/codesenberg/bombardier@latest
-RUN rf go1.19.1.linux-amd64.tar.gz
+RUN rm go1.19.1.linux-amd64.tar.gz
 
 ### install bun
 RUN curl https://bun.sh/install | bash
