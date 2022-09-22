@@ -1,0 +1,7 @@
+
+{
+  "webRootPath"   : "./bun/buchta/useless-public",
+  "cacheRootPath" : "./bun/buchta/.cache",
+  "imports": {
+  }
+}
