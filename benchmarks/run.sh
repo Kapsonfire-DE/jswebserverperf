@@ -4,3 +4,4 @@ npm i
 
 node ./bun/bench.js
 node ./node/bench.js
+node ./deno/bench.js

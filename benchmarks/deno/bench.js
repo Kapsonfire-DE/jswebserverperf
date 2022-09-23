@@ -12,14 +12,17 @@ import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import systeminfo from "../systeminfo.js";
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const resultsPath = '/var/results/deno';
+const resultsPath = '../results/deno';
 let frameworks = JSON.parse(readFileSync(__dirname+'/frameworks.json', 'utf-8'))
 
 
+
+const port = '3000';
+
 const commands = [
-    `bombardier --fasthttp -c 500 -d 10s http://localhost:3000/`,
-    `bombardier --fasthttp -c 500 -d 10s http://localhost:3000/id/1?name=bun`,
-    `bombardier --fasthttp -c 500 -d 10s -m POST -H 'Content-Type: application/json' -f ${__dirname}/../body.json http://localhost:3000/json`
+    `bombardier --fasthttp -c 500 -d 10s http://localhost:${port}/`,
+    `bombardier --fasthttp -c 500 -d 10s http://localhost:${port}/id/1?name=deno`,
+    `bombardier --fasthttp -c 500 -d 10s -m POST -H 'Content-Type: application/json' -f ${__dirname}/../body.json http://localhost:${port}/json`
 ]
 
 const catchNumber = /Reqs\/sec\s+(\d+[.|,]\d+)/m
@@ -55,7 +58,7 @@ for (const framework of frameworks) {
     writeFileSync(resultsPath+`/${name}.txt`, '')
     appendFileSync(resultsPath+'/results.md', `| ${framework.npmName}@${npmVersion} `)
 
-    const server = $`ENV=production node ${__dirname}/${framework.entryPoint}`.quiet().nothrow()
+    const server = $`ENV=production PORT=${port} deno run --allow-env --allow-env  --import-map=${__dirname}/import-map.json ${__dirname}/${framework.entryPoint}`.quiet().nothrow()
 
     // Wait 5 second for server to bootup
     await sleep(5)

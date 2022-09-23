@@ -3,5 +3,15 @@
     "name": "express",
     "entryPoint": "express/index.js",
     "npmName": "express"
+  },
+  {
+    "name": "node-native",
+    "entryPoint": "node-native/index.js",
+    "npmName": "node"
+  },
+  {
+    "name": "virtualstate-listen",
+    "entryPoint": "listen/index.js",
+    "npmName": "@virtualstate/listen"
   }
 ]

@@ -53,5 +53,10 @@
     "name": "nbit",
     "entryPoint": "nbit/index.ts",
     "npmName": "@nbit/bun"
+  },
+  {
+    "name": "virtualstate-listen",
+    "entryPoint": "listen/index.ts",
+    "npmName": "@virtualstate/listen"
   }
 ]
