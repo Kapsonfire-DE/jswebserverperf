@@ -58,7 +58,7 @@ for (const framework of frameworks) {
     writeFileSync(resultsPath+`/${name}.txt`, '')
     appendFileSync(resultsPath+'/results.md', `| ${framework.npmName}@${npmVersion} `)
 
-    const server = $`ENV=production PORT=${port} deno run --allow-env --allow-env  --import-map=${__dirname}/import-map.json ${__dirname}/${framework.entryPoint}`.quiet().nothrow()
+    const server = $`ENV=production PORT=${port} deno run --allow-env --import-map=${__dirname}/import-map.json ${__dirname}/${framework.entryPoint}`.quiet().nothrow()
 
     // Wait 5 second for server to bootup
     await sleep(5)
