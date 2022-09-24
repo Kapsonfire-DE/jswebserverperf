@@ -1,10 +1,5 @@
 [
   {
-    "name": "deno-native",
-    "entryPoint": "deno-native/index.ts",
-    "npmName": "deno"
-  },
-  {
     "name": "virtualstate-listen",
     "entryPoint": "listen/index.ts",
     "npmName": "@virtualstate/listen"
