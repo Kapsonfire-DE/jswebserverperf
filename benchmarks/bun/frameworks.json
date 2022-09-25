@@ -58,5 +58,10 @@
     "name": "virtualstate-listen",
     "entryPoint": "listen/index.ts",
     "npmName": "@virtualstate/listen"
+  },
+  {
+    "name": "virtualstate-listen-routes",
+    "entryPoint": "listen/routes.js",
+    "npmName": "@virtualstate/listen/routes"
   }
 ]

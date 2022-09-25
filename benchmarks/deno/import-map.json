@@ -1,5 +1,0 @@
-{
-  "imports": {
-    "@virtualstate/listen": "https://cdn.skypack.dev/@virtualstate/listen"
-  }
-}

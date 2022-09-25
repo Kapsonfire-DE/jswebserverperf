@@ -1,4 +1,4 @@
-import { listen, route } from '@virtualstate/listen/routes'
+import { listen } from '@virtualstate/listen'
 
 const type = new Headers()
 type.append('content-type', 'application/json')
@@ -6,27 +6,31 @@ const jsonHeader = {
     headers: type
 }
 
-route('/', () => {
-    return new Response('Hi')
+void listen(async (event) => {
+  const { request } = event;
+  const { url, method } = request
+  const { pathname, searchParams } = new URL(url)
+
+  if (method === 'GET' && pathname === '/') return new Response('Hi')
+  if (method === 'POST' && pathname === '/json')
+      return new Response(
+          JSON.stringify(await request.json()),
+          jsonHeader
+      )
+
+  if (method === 'GET' && pathname.startsWith('/id/')) {
+      const [id, extraPath] = pathname.substring(4).split('/')
+
+      if (!extraPath) {
+          return new Response(`${id} ${searchParams.get('name')}`, {
+              headers: {
+                  'x-powered-by': 'benchmark'
+              }
+          })
+      }
+  }
+
+  return new Response('Not Found', {
+      status: 404
+  })
 })
-
-route('/json', async ({ request }) => {
-    const { method } = request;
-    if (method !== 'POST') return new Response('', { status: 500 });
-    const body = await request.json();
-    return new Response(
-        JSON.stringify(body),
-        jsonHeader
-    )
-});
-
-route('/id/:id', ({ request }, { pathname: { groups: { id }} }) => {
-    const { searchParams } = new URL(request.url);
-    return new Response(`${id} ${searchParams.get('name')}`, {
-        headers: {
-            'x-powered-by': 'benchmark'
-        }
-    })
-})
-
-void listen();
