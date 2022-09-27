@@ -1,19 +1,23 @@
-FROM debian:11 as needsquash
+FROM --platform=$BUILDPLATFORM debian:11 as needsquash
+ARG TARGETPLATFORM
+ARG TARGETARCH
 SHELL ["/bin/bash", "--login", "-c"]
+
 #WE ARE BUILDING ALWAYS WITHOUT CACHE
 RUN apt-get update
 RUN apt-get upgrade -y
-RUN apt-get install curl unzip wget procps -y
+RUN apt-get install curl unzip wget procps gcc-10-aarch64-linux-gnu -y
+RUN cp /usr/aarch64-linux-gnu/lib/* /lib/
 RUN apt-get clean
-RUN rm -rf /var/lib/apt/lists/*
+RUN rm -rf /var/lib/apt/lists/*do
 
 #### install go && bombardier
-RUN wget https://go.dev/dl/go1.19.1.linux-amd64.tar.gz
-RUN rm -rf /usr/local/go && tar -C /usr/local -xzf go1.19.1.linux-amd64.tar.gz
+RUN wget https://go.dev/dl/go1.19.1.linux-$TARGETARCH.tar.gz
+RUN rm -rf /usr/local/go && tar -C /usr/local -xzf go1.19.1.linux-$TARGETARCH.tar.gz
 RUN echo 'export PATH=$PATH:/usr/local/go/bin:~/go/bin' >> ~/.bashrc
 RUN source ~/.bashrc
 RUN go install github.com/codesenberg/bombardier@latest
-RUN rm go1.19.1.linux-amd64.tar.gz
+RUN rm go1.19.1.linux-$TARGETARCH.tar.gz
 
 ### install bun
 RUN curl https://bun.sh/install | bash
