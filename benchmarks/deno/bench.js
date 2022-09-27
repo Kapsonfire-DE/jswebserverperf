@@ -12,7 +12,7 @@ import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import systeminfo from "../systeminfo.js";
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const resultsPath = '../results/deno';
+const resultsPath = __dirname + '/../../results/deno';
 let frameworks = JSON.parse(readFileSync(__dirname+'/frameworks.json', 'utf-8'))
 
 
@@ -58,7 +58,9 @@ for (const framework of frameworks) {
     writeFileSync(resultsPath+`/${name}.txt`, '')
     appendFileSync(resultsPath+'/results.md', `| ${framework.npmName}@${npmVersion} `)
 
-    const server = $`ENV=production PORT=${port} deno run --allow-env ${__dirname}/${framework.entryPoint}`.quiet().nothrow()
+    const cmd = `ENV=production PORT=${port} deno run --unstable --allow-all --allow-env ${__dirname}/${framework.entryPoint}`;
+    console.log(cmd);
+    const server = $`${cmd}`.quiet().nothrow()
 
     // Wait 5 second for server to bootup
     await sleep(5)

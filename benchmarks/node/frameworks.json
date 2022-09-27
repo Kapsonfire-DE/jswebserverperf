@@ -7,7 +7,7 @@
   {
     "name": "node-native",
     "entryPoint": "node-native/index.js",
-    "npmName": "node"
+    "npmName": "Node"
   },
   {
     "name": "virtualstate-listen",

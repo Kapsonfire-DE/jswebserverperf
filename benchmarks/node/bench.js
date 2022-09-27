@@ -12,7 +12,7 @@ import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import systeminfo from "../systeminfo.js";
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const resultsPath = '../results/node';
+const resultsPath = __dirname + '/../../results/node';
 let frameworks = JSON.parse(readFileSync(__dirname+'/frameworks.json', 'utf-8'))
 
 const port = '3000';
