@@ -68,7 +68,7 @@ for (const framework of frameworks) {
     try {
 
 
-        server = $`ENV=production PORT=${port} deno run ${strReplacer(framework.entryPointFlags ?? '')} --unstable --allow-all --allow-env ${__dirname}/${framework.entryPoint}`.nothrow();
+        server = $`ENV=production PORT=${port} deno run ${strReplacer(framework.entryPointFlags ?? '')} --unstable --allow-all --allow-env ${__dirname}/${framework.entryPoint}`.quiet().nothrow();
 
         console.log(server._command);
         // Wait 5 second for server to bootup

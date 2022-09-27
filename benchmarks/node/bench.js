@@ -61,7 +61,7 @@ for (const framework of frameworks) {
     appendFileSync(resultsPath + '/results.md', `| ${framework.npmName}@${npmVersion} `)
     let server;
     try {
-        server = $`ENV=production PORT=${port} node ${__dirname}/${framework.entryPoint}`.nothrow()
+        server = $`ENV=production PORT=${port} node ${__dirname}/${framework.entryPoint}`.quiet().nothrow()
 
         // Wait 5 second for server to bootup
         await sleep(5)
