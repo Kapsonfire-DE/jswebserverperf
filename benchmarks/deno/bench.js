@@ -5,12 +5,13 @@ import {
     writeFileSync,
     appendFileSync,
     readFileSync
-} from 'fs'
-import rimraf from 'rimraf'
-import { $ } from 'zx'
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-import systeminfo from "../systeminfo.js";
+}                          from 'fs'
+import rimraf              from 'rimraf'
+import { $ }               from 'zx'
+import { dirname }         from 'path';
+import { fileURLToPath }   from 'url';
+import systeminfo                      from "../systeminfo.js";
+import {getResults, shrinkPackageName} from "../helpers.js";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const resultsPath = __dirname + '/../../results/deno';
 let frameworks = JSON.parse(readFileSync(__dirname+'/frameworks.json', 'utf-8'))
@@ -46,10 +47,15 @@ const denoVersion = ((await $`deno --version | grep deno | cut -b 6-`.quiet())+'
 frameworks = frameworks.sort((a,b) => a.name.localeCompare(b.name));
 versions.dependencies['Deno'] = {version: denoVersion};
 let jsonResults = {};
+
+function strReplacer(inp) {
+    return inp.replaceAll('$__dirname', __dirname);
+}
+
 for (const framework of frameworks) {
     let frameWorkResult = [];
     let name = framework.name;
-    let npmVersion = versions.dependencies[framework.npmName]?.version ?? 'unknown';
+    let npmVersion = versions.dependencies[shrinkPackageName(framework.npmName)]?.version ?? 'unknown';
 
 
     console.log(`\n${name}: ${framework.npmName}@${npmVersion}\n`)
@@ -58,25 +64,33 @@ for (const framework of frameworks) {
     writeFileSync(resultsPath+`/${name}.txt`, '')
     appendFileSync(resultsPath+'/results.md', `| ${framework.npmName}@${npmVersion} `)
 
-    const cmd = `ENV=production PORT=${port} deno run --unstable --allow-all --allow-env ${__dirname}/${framework.entryPoint}`;
-    console.log(cmd);
-    const server = $`${cmd}`.quiet().nothrow()
-
-    // Wait 5 second for server to bootup
-    await sleep(5)
-
-    for (const command of commands) {
-        appendFileSync(resultsPath +`/${name}.txt`, `${command}\n`)
-
-        const results = (await $([command])) + ''
+    let server;
+    try {
 
 
-        appendFileSync(resultsPath +`/${name}.txt`, results + '\n')
-        appendFileSync(
-            resultsPath +'/results.md',
-            `| ${format(catchNumber.exec(results)[1])} `
-        )
-        frameWorkResult.push(Number((catchNumber.exec(results)[1])));
+        server = $`ENV=production PORT=${port} deno run ${strReplacer(framework.entryPointFlags ?? '')} --unstable --allow-all --allow-env ${__dirname}/${framework.entryPoint}`.nothrow();
+
+        console.log(server._command);
+        // Wait 5 second for server to bootup
+        await sleep(5)
+
+        for (const command of commands) {
+            appendFileSync(resultsPath + `/${name}.txt`, `${command}\n`)
+
+            const results = (await $([command])) + ''
+            let result = getResults(results);
+
+            appendFileSync(resultsPath + `/${name}.txt`, results + '\n')
+            appendFileSync(
+                resultsPath + '/results.md',
+                `| ${result} `
+            )
+            frameWorkResult.push(Number(result));
+        }
+    } catch(ex) {
+        console.error(ex);
+    } finally {
+        await server.kill()
     }
     jsonResults[framework.npmName] = {
         version: npmVersion,
@@ -84,7 +98,7 @@ for (const framework of frameworks) {
     };
     appendFileSync(resultsPath+'/results.md', `|\n`)
 
-    await server.kill()
+
 }
 
 

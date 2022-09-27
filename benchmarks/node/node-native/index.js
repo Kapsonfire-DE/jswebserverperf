@@ -3,18 +3,18 @@ import { createServer } from 'node:http';
 const xPoweredBy = 'benchmark';
 
 const app = createServer((req, res) => {
-    const { pathname } = new URL(req.url, 'https://example.com');
+    const { pathname, searchParams } = new URL(req.url, 'http://example.com')
     const { method } = req;
     if (method === 'GET') {
         if (pathname === "/") {
             res.writeHead(200);
-            res.write(string);
+            res.write('hi');
             return res.end();
         } else if (pathname.startsWith('/id/')) {
-            const [id, extraPath] = pathname.substring(4).split('/');
+            const [id, extraPath] = pathname.substring(4).split('/')
             res.setHeader('x-powered-by', xPoweredBy);
             res.writeHead(200);
-            res.write(string);
+            res.write(`${id} ${searchParams.get('name')}`);
             return res.end();
         }
     }
