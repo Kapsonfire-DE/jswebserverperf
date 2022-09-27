@@ -7,9 +7,8 @@ app.get('/', (req, res) => {
     res.send('Hi')
 })
 
-// ? Can't read body
 app.post('/json', async (req, res) => {
-    res.send(await req.json())
+    res.json(req.body);
 })
 
 // ? Named parameter not implemented?
