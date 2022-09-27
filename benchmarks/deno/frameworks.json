@@ -1,1 +1,19 @@
-[]
+[
+  {
+    "name": "virtualstate-listen",
+    "entryPoint": "listen/index.ts",
+    "entryPointFlags": "--import-map=$__dirname/listen/import-map.json",
+    "npmName": "@virtualstate/listen"
+  },
+  {
+    "name": "virtualstate-listen-routes",
+    "entryPoint": "listen/routes.ts",
+    "entryPointFlags": "--import-map=$__dirname/listen/import-map.json",
+    "npmName": "@virtualstate/listen/routes"
+  },
+  {
+    "name": "deno-native",
+    "entryPoint": "deno-native/index.ts",
+    "npmName": "Deno"
+  }
+]

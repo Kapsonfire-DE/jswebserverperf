@@ -1,0 +1,7 @@
+{
+  "imports": {
+    "@virtualstate/listen": "https://jspm.dev/@virtualstate/listen",
+    "@virtualstate/listen/routes": "https://jspm.dev/@virtualstate/listen/routes",
+    "@virtualstate/navigation/routes": "https://jspm.dev/@virtualstate/navigation/routes"
+  }
+}

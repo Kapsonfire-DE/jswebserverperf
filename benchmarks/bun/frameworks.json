@@ -53,5 +53,15 @@
     "name": "nbit",
     "entryPoint": "nbit/index.ts",
     "npmName": "@nbit/bun"
+  },
+  {
+    "name": "virtualstate-listen",
+    "entryPoint": "listen/index.ts",
+    "npmName": "@virtualstate/listen"
+  },
+  {
+    "name": "virtualstate-listen-routes",
+    "entryPoint": "listen/routes.js",
+    "npmName": "@virtualstate/listen/routes"
   }
 ]
