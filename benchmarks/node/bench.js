@@ -48,6 +48,11 @@ const nodeVersion = ((await $`node --version`.quiet()) + '').trim();
 frameworks = frameworks.sort((a, b) => a.name.localeCompare(b.name));
 versions.dependencies['Node'] = {version: nodeVersion};
 let jsonResults = {};
+
+systeminfo['runtime'] = `node ${nodeVersion}`;
+systeminfo['date'] = (new Date()).toUTCString();
+console.log(JSON.stringify(systeminfo));
+
 for (const framework of frameworks) {
     let frameWorkResult = [];
     let name = framework.name;
@@ -62,9 +67,6 @@ for (const framework of frameworks) {
     let server;
     try {
         server = $`ENV=production PORT=${port} node ${__dirname}/${framework.entryPoint}`.quiet().nothrow()
-
-        // Wait 5 second for server to bootup
-        await sleep(5)
 
         console.log(server._command);
         // Wait 5 second for server to bootup
@@ -106,9 +108,6 @@ appendFileSync(
 | ----------------  | ---------- |
 `
 )
-
-systeminfo['runtime'] = `node ${nodeVersion}`;
-systeminfo['date'] = (new Date()).toUTCString();
 
 
 for (let k in systeminfo) {

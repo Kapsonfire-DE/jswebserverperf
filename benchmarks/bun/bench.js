@@ -13,6 +13,8 @@ import {fileURLToPath} from 'url';
 import systeminfo      from "../systeminfo.js";
 import {getResults, shrinkPackageName}    from "../helpers.js";
 
+
+
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const resultsPath = __dirname + '/../../results/bun';
 let frameworks = JSON.parse(readFileSync(__dirname + '/frameworks.json', 'utf-8'))
@@ -48,6 +50,12 @@ const bunVersion = ((await $`bun ${__dirname}/../bun-version.ts`.quiet()) + '').
 frameworks = frameworks.sort((a, b) => a.name.localeCompare(b.name));
 versions.dependencies['Bun'] = {version: bunVersion};
 let jsonResults = {};
+
+systeminfo['runtime'] = `bun ${bunVersion}`;
+systeminfo['date'] = (new Date()).toUTCString();
+
+console.log(JSON.stringify(systeminfo));
+
 for (const framework of frameworks) {
     let frameWorkResult = [];
     let name = framework.name;
@@ -65,8 +73,6 @@ for (const framework of frameworks) {
     try {
 
         server = server = $`ENV=production PORT=${port} bun ${__dirname}/${framework.entryPoint}`.quiet().nothrow();
-        // Wait 5 second for server to bootup
-        await sleep(5)
 
         console.log(server._command);
         // Wait 5 second for server to bootup
@@ -109,8 +115,7 @@ appendFileSync(
 `
 )
 
-systeminfo['runtime'] = `bun ${bunVersion}`;
-systeminfo['date'] = (new Date()).toUTCString();
+
 
 
 for (let k in systeminfo) {

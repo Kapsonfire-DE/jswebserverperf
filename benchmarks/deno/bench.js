@@ -48,6 +48,12 @@ frameworks = frameworks.sort((a,b) => a.name.localeCompare(b.name));
 versions.dependencies['Deno'] = {version: denoVersion};
 let jsonResults = {};
 
+systeminfo['runtime'] = `deno ${denoVersion}`;
+systeminfo['date'] = (new Date()).toUTCString();
+
+console.log(JSON.stringify(systeminfo));
+
+
 function strReplacer(inp) {
     return inp.replaceAll('$__dirname', __dirname);
 }
@@ -113,8 +119,6 @@ appendFileSync(
 `
 )
 
-systeminfo['runtime'] = `deno ${denoVersion}`;
-systeminfo['date'] = (new Date()).toUTCString();
 
 
 for(let k in systeminfo) {
