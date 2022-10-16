@@ -3,13 +3,15 @@
     "name": "virtualstate-listen",
     "entryPoint": "listen/index.ts",
     "entryPointFlags": "--import-map=$__dirname/listen/import-map.json",
-    "npmName": "@virtualstate/listen"
+    "npmName": "@virtualstate/listen",
+    "jsx": true
   },
   {
     "name": "virtualstate-listen-routes",
     "entryPoint": "listen/routes.ts",
     "entryPointFlags": "--import-map=$__dirname/listen/import-map.json",
-    "npmName": "@virtualstate/listen/routes"
+    "npmName": "@virtualstate/listen/routes",
+    "jsx": true
   },
   {
     "name": "deno-native",

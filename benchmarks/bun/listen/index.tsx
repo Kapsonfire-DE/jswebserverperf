@@ -1,4 +1,4 @@
-import { listen } from '@virtualstate/listen'
+import { listen, respondWith } from '@virtualstate/listen'
 
 const type = new Headers()
 type.append('content-type', 'application/json')
@@ -28,6 +28,18 @@ void listen(async (event) => {
               }
           })
       }
+  }
+
+  if (method === 'GET' && pathname === '/jsx') {
+      return respondWith(
+          event,
+          <html>
+              <body>
+                  <h1>Hello World</h1>
+                  <p>This is an example.</p>
+              </body>
+          </html>
+      );
   }
 
   return new Response('Not Found', {

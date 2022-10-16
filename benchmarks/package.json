@@ -14,6 +14,7 @@
   "dependencies": {
     "@kapsonfire/bun-bakery": "^0.3.2",
     "@nbit/bun": "^0.7.0",
+    "@virtualstate/focus": "^1.4.10-alpha.1",
     "@virtualstate/listen": "^1.0.0-alpha.11",
     "@virtualstate/navigation": "^1.0.1-alpha.177",
     "baojs": "^0.1.3",

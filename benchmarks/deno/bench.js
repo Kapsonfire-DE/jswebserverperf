@@ -24,7 +24,11 @@ const commands = [
     `bombardier --fasthttp -c 500 -p r  -d 10s http://localhost:${port}/`,
     `bombardier --fasthttp -c 500 -p r  -d 10s http://localhost:${port}/id/1?name=deno`,
     `bombardier --fasthttp -c 500 -p r  -d 10s -m POST -H 'Content-Type: application/json' -f ${__dirname}/../body.json http://localhost:${port}/json`
-]
+];
+
+const jsxCommands = [
+    `bombardier --fasthttp -c 500 -p r -d 10s -H 'Accept: text/html' http://localhost:${port}/jsx?name=deno`,
+];
 
 const catchNumber = /Reqs\/sec\s+(\d+[.|,]\d+)/m
 const format = Intl.NumberFormat('en-US').format
@@ -78,9 +82,16 @@ for (const framework of frameworks) {
 
         console.log(server._command);
         // Wait 5 second for server to bootup
-        await sleep(5)
+        await sleep(5);
 
-        for (const command of commands) {
+        const frameworkCommands = commands;
+        if (framework.jsx) {
+            frameworkCommands.push(
+                ...jsxCommands
+            );
+        }
+
+        for (const command of frameworkCommands) {
             appendFileSync(resultsPath + `/${name}.txt`, `${command}\n`)
 
             const results = (await $([command])) + ''

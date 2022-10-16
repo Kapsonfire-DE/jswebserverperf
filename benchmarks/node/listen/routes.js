@@ -1,5 +1,7 @@
-import { listen, route } from '@virtualstate/listen/routes'
+import { listen, route } from '@virtualstate/listen/routes';
+import { respondWith } from '@virtualstate/listen';
 import { enableURLPatternCache } from '@virtualstate/navigation/routes';
+import {h} from "@virtualstate/focus";
 
 enableURLPatternCache()
 
@@ -30,6 +32,18 @@ route('/id/:id', ({ request }, { pathname: { groups: { id }} }) => {
             'x-powered-by': 'benchmark'
         }
     })
+})
+
+route('/jsx', event => {
+    respondWith(
+        event,
+        h("html", {},
+            h("body", {},
+                h("h1", {}, "Hello World"),
+                h("p", {}, "This is an example.")
+            )
+        )
+    )
 })
 
 void listen();

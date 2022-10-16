@@ -12,6 +12,13 @@
   {
     "name": "virtualstate-listen",
     "entryPoint": "listen/index.js",
-    "npmName": "@virtualstate/listen"
+    "npmName": "@virtualstate/listen",
+    "jsx": true
+  },
+  {
+    "name": "virtualstate-listen-routes",
+    "entryPoint": "listen/routes.js",
+    "npmName": "@virtualstate/listen/routes",
+    "jsx": true
   }
 ]
