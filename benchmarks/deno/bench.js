@@ -21,9 +21,9 @@ let frameworks = JSON.parse(readFileSync(__dirname+'/frameworks.json', 'utf-8'))
 const port = '3000';
 
 const commands = [
-    `bombardier --fasthttp -c 500 -p r  -d 10s http://localhost:${port}/`,
-    `bombardier --fasthttp -c 500 -p r  -d 10s http://localhost:${port}/id/1?name=deno`,
-    `bombardier --fasthttp -c 500 -p r  -d 10s -m POST -H 'Content-Type: application/json' -f ${__dirname}/../body.json http://localhost:${port}/json`
+    `bombardier --fasthttp -c 500 -p r  -d 10s -H 'Accept: text/html;q=0.9, */*;q=0.8' http://localhost:${port}/`,
+    `bombardier --fasthttp -c 500 -p r  -d 10s -H 'Accept: text/html;q=0.9, */*;q=0.8' http://localhost:${port}/id/1?name=deno`,
+    `bombardier --fasthttp -c 500 -p r  -d 10s -m POST -H 'Accept: application/json' -H 'Content-Type: application/json' -f ${__dirname}/../body.json http://localhost:${port}/json`
 ]
 
 const catchNumber = /Reqs\/sec\s+(\d+[.|,]\d+)/m
