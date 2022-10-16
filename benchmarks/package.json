@@ -8,22 +8,24 @@
   "license": "ISC",
   "devDependencies": {
     "rimraf": "^3.0.2",
-    "zx": "^7.0.8"
+    "zx": "^7.1.1"
   },
   "type": "module",
   "dependencies": {
-    "@kapsonfire/bun-bakery": "^0.3.2",
+    "@kapsonfire/bun-bakery": "^0.4.1",
     "@nbit/bun": "^0.7.0",
-    "@virtualstate/listen": "^1.0.0-alpha.11",
+    "@virtualstate/focus": "^1.4.10-alpha.4",
+    "@virtualstate/listen": "^1.0.0-alpha.14",
     "@virtualstate/navigation": "^1.0.1-alpha.177",
     "baojs": "^0.1.3",
     "buchta": "^0.3.4",
-    "bunrest": "^1.1.4",
+    "bunrest": "^1.1.5",
     "colstonjs": "^0.1.0-beta.5",
-    "express": "^4.18.1",
-    "fastify": "^4.7.0",
+    "express": "^4.18.2",
+    "fastify": "^4.8.1",
     "hono": "^2.2.5",
     "hyperbun": "^0.4.6",
-    "kingworld": "^0.0.0-experimental.27"
+    "kingworld": "^0.0.0-experimental.27",
+    "urlpattern-polyfill": "^6.0.1"
   }
 }
