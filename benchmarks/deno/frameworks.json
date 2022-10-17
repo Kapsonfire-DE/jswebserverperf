@@ -12,6 +12,12 @@
     "npmName": "@virtualstate/listen/routes"
   },
   {
+    "name": "virtualstate-listen-jsx",
+    "entryPoint": "listen/jsx.ts",
+    "entryPointFlags": "--import-map=$__dirname/listen/import-map.json",
+    "npmName": "@virtualstate/listen/jsx"
+  },
+  {
     "name": "deno-native",
     "entryPoint": "deno-native/index.ts",
     "npmName": "Deno"
