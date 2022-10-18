@@ -72,7 +72,7 @@ for (const framework of frameworks) {
 
     try {
 
-        server = server = $`ENV=production PORT=${port} bun ${__dirname}/${framework.entryPoint}`.quiet().nothrow();
+        server = server = $`ENV=production PORT=${port} bun ${__dirname}/${framework.entryPoint}`.nothrow();
 
         console.log(server._command);
         // Wait 5 second for server to bootup
