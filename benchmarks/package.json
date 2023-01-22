@@ -7,25 +7,26 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "rimraf": "^3.0.2",
+    "rimraf": "^4.1.1",
     "zx": "^7.1.1"
   },
   "type": "module",
   "dependencies": {
-    "@kapsonfire/bun-bakery": "^0.4.3",
+    "@bunsvr/router": "^0.0.8",
+    "@kapsonfire/bun-bakery": "^0.4.4",
     "@nbit/bun": "^0.7.0",
     "@virtualstate/focus": "^1.4.10-alpha.4",
     "@virtualstate/listen": "^1.0.0-alpha.14",
     "@virtualstate/navigation": "^1.0.1-alpha.177",
-    "baojs": "^0.1.3",
-    "buchta": "^0.3.4",
-    "bunrest": "^1.1.6",
+    "baojs": "^0.2.1",
+    "buchta": "^0.4.25",
+    "bunrest": "^1.1.8",
     "colstonjs": "^0.1.0-beta.5",
     "express": "^4.18.2",
-    "fastify": "^4.9.2",
-    "hono": "^2.5.0",
+    "fastify": "^4.12.0",
+    "hono": "^2.7.3",
     "hyperbun": "^0.4.6",
-    "kingworld": "^0.0.0-experimental.40",
-    "urlpattern-polyfill": "^6.0.1"
+    "kingworld": "^0.0.0-experimental.55",
+    "urlpattern-polyfill": "^6.0.2"
   }
 }

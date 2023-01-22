@@ -68,5 +68,10 @@
     "name": "virtualstate-listen-jsx",
     "entryPoint": "listen/jsx.js",
     "npmName": "@virtualstate/listen/jsx"
+  },
+  {
+    "name": "BunSVR",
+    "entryPoint": "bunsvr/index.ts",
+    "npmName": "@bunsvr/router"
   }
 ]
