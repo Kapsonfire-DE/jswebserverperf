@@ -1,25 +1,5 @@
 [
   {
-    "name": "bun-bakery",
-    "entryPoint": "bun-bakery/index.ts",
-    "npmName": "@kapsonfire/bun-bakery"
-  },
-  {
-    "name": "baojs",
-    "entryPoint": "baojs/index.ts",
-    "npmName": "baojs"
-  },
-  {
-    "name": "buchta",
-    "entryPoint": "buchta/index.ts",
-    "npmName": "buchta"
-  },
-  {
-    "name": "express",
-    "entryPoint": "express/index.ts",
-    "npmName": "express"
-  },
-  {
     "name": "Bun",
     "entryPoint": "bun-native/index.ts",
     "npmName": "Bun"

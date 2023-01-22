@@ -4,11 +4,29 @@ const jsonHeader = {
     headers: type
 }
 
+
+const emptySearchParams = new URLSearchParams('');
 Bun.serve({
               port: 3000,
               fetch: async (request) => {
-                  const { url, method, json } = request
-                  const { pathname, searchParams } = new URL(url)
+                  const { url, method } = request
+
+                  let pathname = url.replace(/^.*\/\/[^\/]+/, '');
+
+                  let index = pathname.lastIndexOf("?");
+                  let searchParams = null;
+                  if (index > -1) {
+                      searchParams = new URLSearchParams(pathname.substring(index+1));
+                      pathname = pathname.substring(0, index);
+                  } else {
+                      searchParams = emptySearchParams;
+                  }
+
+
+
+
+
+
 
                   if (method === 'GET' && pathname === '/') return new Response('Hi')
                   if (method === 'POST' && pathname === '/json')
@@ -19,7 +37,6 @@ Bun.serve({
 
                   if (method === 'GET' && pathname.startsWith('/id/')) {
                       const [id, extraPath] = pathname.substring(4).split('/')
-
                       if (!extraPath) {
                           return new Response(`${id} ${searchParams.get('name')}`, {
                               headers: {
