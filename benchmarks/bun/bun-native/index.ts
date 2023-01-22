@@ -13,13 +13,10 @@ Bun.serve({
 
                   let pathname = url.replace(/^.*\/\/[^\/]+/, '');
 
-                  let index = pathname.lastIndexOf("?");
-                  let searchParams = null;
+                  const index = pathname.lastIndexOf("?");
+                  const searchParams = index > -1 ? new URLSearchParams(pathname.substring(index+1)) : emptySearchParams;
                   if (index > -1) {
-                      searchParams = new URLSearchParams(pathname.substring(index+1));
                       pathname = pathname.substring(0, index);
-                  } else {
-                      searchParams = emptySearchParams;
                   }
 
 
