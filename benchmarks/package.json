@@ -12,7 +12,7 @@
   },
   "type": "module",
   "dependencies": {
-    "@bunsvr/router": "^0.0.8",
+    "@bunsvr/router": "^0.0.10",
     "@kapsonfire/bun-bakery": "^0.4.4",
     "@nbit/bun": "^0.7.0",
     "@virtualstate/focus": "^1.4.10-alpha.4",
